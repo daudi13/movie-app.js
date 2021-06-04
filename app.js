@@ -44,7 +44,28 @@ async function fetchMovies(url) {
         })
     }
 
+function displayLangauge(language) {
 
+    if (language === 'en') {
+        return 'English'
+    } else if (language === 'fr') {
+        return 'French' 
+    } else if (langauge === 'es') {
+        return 'Spanish'
+    } else if (language === 'zh') {
+        return 'Chinese'
+    } else if (language === 'nl') {
+        return 'Dutch'
+    } else if (langauge === 'de') {
+        return 'German'
+    } else if (language === 'ja') {
+        return 'japanese'
+    } else if (language === 'ko') {
+        return 'korean'
+    } else {
+        return 'not available'
+    }
+} 
 
 function getClassByRate(vote) {
     if (vote >= 8) {
