@@ -22,10 +22,10 @@ async function fetchMovies(url) {
             movie.classList.add('movie')
             movieEl.innerHTML = `
             <div class="movie">
-            <img src="${poster_path}" alt="">
+            <img src="${IMG_URL + poster_path}" alt="${title}">
             <div class="movie-info">
                 <h3>${title}</h3>
-                <span class="${(if(vote_average ))}">${vote_average}</span>
+                <span class="green">${vote_average}</span>
             </div>
             <div class="overview">
                 <h3>overview</h3>
@@ -34,6 +34,16 @@ async function fetchMovies(url) {
         </div>
             `
         })
+    }
+}
+
+function getClassByRate(vote) {
+    if (vote >= 8) {
+        return 'green';
+    } else if (vote >= 5) {
+        return 'orange';
+    } else {
+        return 'red'
     }
 }
 
