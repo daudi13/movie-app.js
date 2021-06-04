@@ -13,29 +13,31 @@ async function fetchMovies(url) {
     const response = await fetch(url)
     const data = await response.json()
 
-    displayMovies(movies) {
+    displayMovies(data.results)
+}
+
+    function displayMovies(movies) {
         main.innerHTML = '';
 
         movies.forEach((movie) => {
             const { title, poster_path, vote_average, overview } = movie
             const movieEl = document.createElement('div')
-            movie.classList.add('movie')
+            movieEl.classList.add('movie')
             movieEl.innerHTML = `
-            <div class="movie">
-            <img src="${IMG_URL + poster_path}" alt="${title}">
+            
+            <img src="${IMG_PATH + poster_path}" alt="${title}">
             <div class="movie-info">
                 <h3>${title}</h3>
-                <span class="green">${vote_average}</span>
+                <span class="${getClassByRate(vote_average)}">${vote_average}</span>
             </div>
             <div class="overview">
                 <h3>overview</h3>
                 <p>${overview}</p>
             </div>
-        </div>
             `
+            main.appendChild(movieEl)
         })
     }
-}
 
 function getClassByRate(vote) {
     if (vote >= 8) {
