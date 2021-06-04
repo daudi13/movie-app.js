@@ -4,7 +4,8 @@ const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie?api_key=ff98e1d8f6
 
 const form = document.getElementById('form');
 const search = document.getElementById('search');
-const main = document.getElementById('main')
+const main = document.getElementById('popular')
+const mainPage = document.getElementById('main')
 
 //GET initial movies 
 
@@ -14,13 +15,14 @@ async function fetchMovies(url) {
     const response = await fetch(url)
     const data = await response.json()
 
-    // displayMovies(data.results)
+    displayMovies(data.results)
 
-    console.log(data.results)
+    // console.log(data.results)
 }
 
     function displayMovies(movies) {
         main.innerHTML = '';
+        
 
         movies.forEach((movie) => {
 
@@ -42,21 +44,23 @@ async function fetchMovies(url) {
             `
             main.appendChild(movieEl)
         })
+
+        
     }
 
-function displayLangauge(language) {
+function displayLanguage(language) {
 
     if (language === 'en') {
         return 'English'
     } else if (language === 'fr') {
         return 'French' 
-    } else if (langauge === 'es') {
+    } else if (language === 'es') {
         return 'Spanish'
     } else if (language === 'zh') {
         return 'Chinese'
     } else if (language === 'nl') {
         return 'Dutch'
-    } else if (langauge === 'de') {
+    } else if (language === 'de') {
         return 'German'
     } else if (language === 'ja') {
         return 'japanese'
