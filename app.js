@@ -8,19 +8,23 @@ const main = document.getElementById('main')
 
 //GET initial movies 
 
-fetchMovies(API_URL)
+fetchMovies(API_URL);
+
 async function fetchMovies(url) {
     const response = await fetch(url)
     const data = await response.json()
 
-    displayMovies(data.results)
+    // displayMovies(data.results)
+
+    console.log(data.results)
 }
 
     function displayMovies(movies) {
         main.innerHTML = '';
 
         movies.forEach((movie) => {
-            const { title, poster_path, vote_average, overview } = movie
+
+            const { title, poster_path, vote_average, overview, original_language} = movie
             const movieEl = document.createElement('div')
             movieEl.classList.add('movie')
             movieEl.innerHTML = `
@@ -33,11 +37,14 @@ async function fetchMovies(url) {
             <div class="overview">
                 <h3>overview</h3>
                 <p>${overview}</p>
+                <p style="margin-top: 20px">Language:${displayLanguage(original_language)}</p>
             </div>
             `
             main.appendChild(movieEl)
         })
     }
+
+
 
 function getClassByRate(vote) {
     if (vote >= 8) {
@@ -63,3 +70,5 @@ form.addEventListener('submit', (e) => {
     }
 
 })
+
+
